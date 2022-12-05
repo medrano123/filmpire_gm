@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 //import { ColorModeContext } from '../../utils/ToggleColorMode';
 //import { setUser, userSelector } from '../../features/auth';
-import { Sidebar } from '..';
+import { Sidebar, Search } from '..';
 //import { fetchToken, createSessionId, moviesApi } from '../../utils';
 import useStyles from './styles';
 
@@ -38,7 +38,7 @@ const NavBar = () => {
 					<IconButton color="inherit" sx={{ ml: 1 }} onClick={()=>{ }}>
            				{theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           			</IconButton>
-					{ !isMobile && 'Search...'}
+					{ !isMobile && <Search />}
 				
 					<div>
             		{!isAuthenticated ? (
@@ -61,7 +61,7 @@ const NavBar = () => {
              		</Button>
             	)}
          			</div>
-					 {isMobile && 'Search'}
+					 {isMobile && <Search />}
 				</Toolbar>
 			</AppBar>
 			<div>
