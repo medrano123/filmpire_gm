@@ -74,18 +74,19 @@ const NavBar = () => {
 						component={Link}
 						to={`/profile/${user.id}`}
 						className={classes.linkButton}
-						onClick={() => {}}>
+						onClick={() => {}}
+						>
                 		{!isMobile && <>My Movies &nbsp;</>}
                 		<Avatar
-                  		style={{ width: 30, height: 30 }}
-                  		alt="Profile"
-                  		src={'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png'}
+                  			style={{ width: 30, height: 30 }}
+                  			alt="Profile"
+                  			src={'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png'}
                 		/>
              		</Button>
             	)}
-         			</div>
-					 {isMobile && <Search />}
-				</Toolbar>
+         	</div>
+			{isMobile && <Search />}
+			</Toolbar>
 			</AppBar>
 			<div>
         		<nav className={classes.drawer}>
@@ -111,4 +112,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar
+export default NavBar;
