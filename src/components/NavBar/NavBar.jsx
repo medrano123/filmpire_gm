@@ -6,20 +6,43 @@ import { useTheme } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 
 //import { ColorModeContext } from '../../utils/ToggleColorMode';
-//import { setUser, userSelector } from '../../features/auth';
+import { setUser, userSelector } from '../../features/auth';
 import { Sidebar, Search } from '..';
-//import { fetchToken, createSessionId, moviesApi } from '../../utils';
+import { fetchToken, createSessionId, moviesApi } from '../../utils';
 import useStyles from './styles';
 
 const NavBar = () => {
+	const { isAuthenticated, user } = useSelector(userSelector) 
 	const classes = useStyles();
+	const dispatch = useDispatch();
 	const isMobile = useMediaQuery('(max-width:600px)');
 	const theme = useTheme();
-	const isAuthenticated = true;
+	//const isAuthenticated = false;
+	const [mobileOpen, setMobileOpen] = useState(false);
 
-	const [mobileOpen, setMobileOpen] = useState(false)
 
+	console.log(user)
+	const token = localStorage.getItem('request_token');
+	const sessionIdFromLocalStorage = localStorage.getItem('session_id');
+  
 
+	useEffect(() => {
+		const logInUser = async () => {
+			if(token) {
+				if(sessionIdFromLocalStorage) {
+					const { data: userData } = await  moviesApi.get(`/account?session_id=${sessionIdFromLocalStorage }`)
+					dispatch(setUser(userData))
+				} else {
+						const sessionId = await createSessionId();
+						const { data: userData } = await  moviesApi.get(`/account?session_id=${sessionId}`)
+
+						dispatch(setUser(userData))
+				}
+			}
+		}
+		logInUser();
+	}, [token])
+	
 
   	return (
 		<>
@@ -42,14 +65,14 @@ const NavBar = () => {
 				
 					<div>
             		{!isAuthenticated ? (
-             		 <Button color="inherit" onClick={()=>{}}>
+             		 <Button color="inherit" onClick={fetchToken}>
                 		Login &nbsp; <AccountCircle />
               		</Button>
             		) : (
               		<Button
 						color="inherit"
 						component={Link}
-						to={`/profile/:id`}
+						to={`/profile/${user.id}`}
 						className={classes.linkButton}
 						onClick={() => {}}>
                 		{!isMobile && <>My Movies &nbsp;</>}
