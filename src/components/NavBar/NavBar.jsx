@@ -21,7 +21,7 @@ const NavBar = () => {
 	const [mobileOpen, setMobileOpen] = useState(false);
 
 
-	console.log(user)
+	//console.log(user)
 	const token = localStorage.getItem('request_token');
 	const sessionIdFromLocalStorage = localStorage.getItem('session_id');
   
