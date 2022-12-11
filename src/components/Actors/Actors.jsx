@@ -5,7 +5,7 @@ import { ArrowBack } from '@mui/icons-material';
 
 import { useGetActorsDetailsQuery, useGetMoviesByActorIdQuery } from '../../services/TMDB';
 import useStyles from './styles';
-import { MovieList } from '..';
+import { MovieList, Pagination } from '..';
 
 
 const Actors = () => {
@@ -13,10 +13,11 @@ const Actors = () => {
 	const history = useHistory();
 	const { data, isFetching, error } = useGetActorsDetailsQuery(id);
 	const classes = useStyles();
-	const page = 1;
+	const [page, setPage] = useState(1);
 	const { data: movies } = useGetMoviesByActorIdQuery({ id, page });
 
-	console.log(movies)
+	//console.log(movies)
+
 	if (isFetching) {
 		return (
 			<Box display="flex" justifyContent="center" alignItems="center">
@@ -71,6 +72,7 @@ const Actors = () => {
 					Movies
 				</Typography>
 					{movies && <MovieList movies={movies} numberOfMovies={12} />}
+					<Pagination currentPage={page} setPage={setPage} totalPages={movies?.total_pages} />
 			</Box>
 		</>
   	)

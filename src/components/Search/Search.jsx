@@ -11,6 +11,7 @@ const Search = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [query, setQuery] = useState('')
+    const location = useLocation();
     //console.log('Search')
 
     const handleKeyPress = (event) => {
@@ -20,6 +21,8 @@ const Search = () => {
         }
     }
 
+    if(location.pathname !== '/') return null;
+    
     return (
         <div className={classes.searchContainer}>
             <TextField

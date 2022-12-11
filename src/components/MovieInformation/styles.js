@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 
 export default makeStyles((theme) => ({
-   containerSpaceAround: {
+  containerSpaceAround: {
     display: 'flex',
     justifyContent: 'space-around',
     margin: '10px 0 !important',
@@ -42,7 +42,7 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     textDecoration: 'none',
     [theme.breakpoints.down('sm')]: {
-      padding: '0.5rem 1rem', 
+      padding: '0.5rem 1rem',
     },
   },
   castImage: {
@@ -73,4 +73,4 @@ export default makeStyles((theme) => ({
       height: '90%',
     },
   },
-})); 
+}));
