@@ -191,16 +191,18 @@ const MovieInformation = () => {
 				open={open}
 				onClose={() => setOpen(false)} 
 			>
+			<>
 				{data?.videos?.results?.length > 0 && (
 					<iframe 
 						autoPlay
 						className={classes.video}
 						frameBorder= "0"
 						title="trailer"
-						src={`https://www.youtube.com/embed/${data.videos.results[0].key}`}
+						src={`https://www.youtube.com/embed/${data?.videos?.results[0]?.key}`}
 						allow="autoPlay"
 					/>
 				)}
+			</>
 			</Modal>
 
 		</Grid>
